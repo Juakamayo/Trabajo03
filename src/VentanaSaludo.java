@@ -11,6 +11,7 @@ class Usuario {
 public class VentanaSaludo extends JFrame {
     private JTextField campoTexto;
     private JButton botonSaludar;
+    private JButton botonLimpiar;
     private JLabel etiquetaSaludo;
 
     public VentanaSaludo() {
@@ -34,10 +35,14 @@ public class VentanaSaludo extends JFrame {
         botonSaludar = new JButton("Saludar");
         botonSaludar.setBounds(270, 30, 150, 75);
 
+        botonLimpiar = new JButton("Limpiar");
+        botonLimpiar.setBounds(270, 120, 150, 75);
+
         etiquetaSaludo = new JLabel("Aqui aparecera su saludo");
         etiquetaSaludo.setBounds(50, 80, 300, 25);
 
         botonSaludar.addActionListener(e -> mostrarSaludo());
+        botonLimpiar.addActionListener(e -> limpiarSaludo());
 
         campoTexto.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -49,8 +54,16 @@ public class VentanaSaludo extends JFrame {
 
         add(campoTexto);
         add(botonSaludar);
+
+        add(botonLimpiar);
+
         add(etiquetaSaludo);
 
+    }
+
+    public void limpiarSaludo() {
+        String vacio = "";
+        etiquetaSaludo.setText(vacio);
     }
 
     public void mostrarSaludo() {
