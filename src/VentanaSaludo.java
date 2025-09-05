@@ -31,7 +31,7 @@ public class VentanaSaludo {
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    botonSaludar.doClick(); // Simula un clic en el botón
+                    botonSaludar.doClick();
                 }
             }
         });
