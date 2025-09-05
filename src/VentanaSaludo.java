@@ -8,33 +8,38 @@ class Usuario {
     }
 }
 
-public class VentanaSaludo {
-    public static void main(String[] args) {
+public class VentanaSaludo extends JFrame {
+    private JTextField campoTexto;
+    private JButton botonSaludar;
+    private JLabel etiquetaSaludo;
 
-        JFrame ventana = new JFrame ( " App de Saludo ICC490 " ) ;
-        ventana . setSize (600 , 400) ;
-        ventana . setDefaultCloseOperation ( JFrame . EXIT_ON_CLOSE ) ;
-        ventana . setLayout ( null ) ;
-        ventana . getContentPane().setBackground(Color.decode("#FFB6C1"));
-        JTextField campoTexto = new JTextField () ;
-        campoTexto . setBounds (50 , 30 , 200 , 25) ;
-        JButton botonSaludar = new JButton ( " Saludar " ) ;
-        botonSaludar . setBounds (270 , 30 , 150 , 75) ;
-        JLabel etiquetaSaludo = new JLabel ( " Aqui aparecera su saludo " ) ;
-        etiquetaSaludo . setBounds (50 , 80 , 300 , 25) ;
-        botonSaludar . addActionListener ( e -> {
-            String nombre = campoTexto . getText () ;
-            if (nombre.trim().isEmpty()) {
+    public VentanaSaludo() {
+        setTitle("App de saludo ICC490");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(null);
+        getContentPane().setBackground(Color.decode("#FFB6C1"));
 
-                JOptionPane.showMessageDialog(null, "Por favor ingresa tu nombre.");
-            } else {
-                etiquetaSaludo.setText("¡Hola, " + nombre +"!");
-            }
-        }) ;
+        inicializarComponentes();
 
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+
+    public void inicializarComponentes() {
+
+        campoTexto = new JTextField();
+        campoTexto.setBounds(50, 30, 200, 25);
+
+        botonSaludar = new JButton("Saludar");
+        botonSaludar.setBounds(270, 30, 150, 75);
+
+        etiquetaSaludo = new JLabel("Aqui aparecera su saludo");
+        etiquetaSaludo.setBounds(50, 80, 300, 25);
+
+        botonSaludar.addActionListener(e -> mostrarSaludo());
 
         campoTexto.addKeyListener(new KeyAdapter() {
-            @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     botonSaludar.doClick();
@@ -42,12 +47,23 @@ public class VentanaSaludo {
             }
         });
 
+        add(campoTexto);
+        add(botonSaludar);
+        add(etiquetaSaludo);
 
-        ventana . add ( campoTexto ) ;
-        ventana . add ( botonSaludar ) ;
-        ventana . add ( etiquetaSaludo ) ;
-        ventana . setLocationRelativeTo ( null ) ;
-        ventana . setVisible ( true ) ;
+    }
 
+    public void mostrarSaludo() {
+        String nombre = campoTexto.getText();
+        if (nombre.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Profavor ingresa un nombre valido.");
+        } else {
+            etiquetaSaludo.setText(Usuario.getSaludo(nombre));
+        }
+    }
+
+    public static void main(String[] args) {
+
+        new VentanaSaludo();
     }
 }
