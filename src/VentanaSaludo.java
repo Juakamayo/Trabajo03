@@ -2,6 +2,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+class Usuario {
+    public static String getSaludo(String nombre) {
+        return ("¡Hola, " + nombre + "!");
+    }
+}
+
 public class VentanaSaludo {
     public static void main(String[] args) {
 
